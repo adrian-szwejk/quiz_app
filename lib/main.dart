@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Number of correct answers: ',
             ),
             Text(
               '$_counter',
@@ -59,24 +59,28 @@ class _HomePageState extends State<HomePage> {
               color: const Color.fromARGB(255, 205, 29, 26),
               fontColor: Colors.black,
               fontSize: 20.0,
+              function: _incrementCounter,
             ),
             buildButton(
               text: "Answer 2",
               color: const Color.fromARGB(255, 36, 202, 236),
               fontColor: Colors.black,
               fontSize: 20.0,
+              function: _incrementCounter,
             ),
             buildButton(
               text: "Answer 3",
               color: const Color.fromARGB(255, 225, 62, 193),
               fontColor: Colors.black,
               fontSize: 20.0,
+              function: _incrementCounter,
             ),
             buildButton(
               text: "Answer 4",
               color: const Color.fromARGB(255, 140, 242, 15),
               fontColor: Colors.black,
               fontSize: 20.0,
+              function: _incrementCounter,
             ),
           ],
         ),
@@ -90,15 +94,17 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Container buildButton(
-    {String text = "",
-    Color fontColor = Colors.green,
-    double fontSize = 30.0,
-    Color? color}) {
+Container buildButton({
+  String text = "",
+  Color fontColor = Colors.green,
+  double fontSize = 30.0,
+  Color? color,
+  VoidCallback? function,
+}) {
   return Container(
     padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
     child: TextButton(
-      onPressed: () {},
+      onPressed: function,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(color),
         elevation: MaterialStateProperty.all(3.0),
