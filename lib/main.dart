@@ -104,20 +104,11 @@ class _HomePageState extends State<HomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.grey),
-                elevation: MaterialStateProperty.all(3.0),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(10.0)),
-                fixedSize: MaterialStateProperty.all(const Size.fromWidth(350)),
-              ),
-              child: const Text(
-                "Answer 1",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
+            buildButton(
+              text: "Answer 2",
+              color: Colors.grey[600],
+              fontColor: Colors.black,
+              fontSize: 20.0,
             ),
           ],
         ),
@@ -129,4 +120,35 @@ class _HomePageState extends State<HomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+Container buildButton(
+    {String text = "",
+    Color fontColor = Colors.green,
+    double fontSize = 30.0,
+    Color? color}) {
+  return Container(
+    padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+    child: TextButton(
+      onPressed: () {},
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(color),
+        elevation: MaterialStateProperty.all(3.0),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(10.0)),
+        fixedSize: MaterialStateProperty.all(const Size.fromWidth(350)),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: fontColor,
+          fontSize: fontSize,
+        ),
+      ),
+    ),
+  );
 }
