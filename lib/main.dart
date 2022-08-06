@@ -105,8 +105,26 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             buildButton(
+              text: "Answer 1",
+              color: const Color.fromARGB(255, 205, 29, 26),
+              fontColor: Colors.black,
+              fontSize: 20.0,
+            ),
+            buildButton(
               text: "Answer 2",
-              color: Colors.grey[600],
+              color: const Color.fromARGB(255, 36, 202, 236),
+              fontColor: Colors.black,
+              fontSize: 20.0,
+            ),
+            buildButton(
+              text: "Answer 3",
+              color: const Color.fromARGB(255, 225, 62, 193),
+              fontColor: Colors.black,
+              fontSize: 20.0,
+            ),
+            buildButton(
+              text: "Answer 4",
+              color: const Color.fromARGB(255, 140, 242, 15),
               fontColor: Colors.black,
               fontSize: 20.0,
             ),
