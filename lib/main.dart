@@ -43,45 +43,17 @@ class _HomePageState extends State<HomePage> {
     3: {"Barack Obama", "Hunter Biden", "Donald Trump", "Joe Biden"},
   };
 
-  // void fillQNA() {
-  //   //Fills questions and answers maps with values
-  //   questions_["What is the color of the sun"] = "2";
-  //   //White
-  //   answers_[0]?.add("Yellow");
-  //   answers_[0]?.add("White");
-  //   answers_[0]?.add("Orange");
-  //   answers_[0]?.add("Blue");
-
-  //   questions_["How many feet are in a mile"] = "3";
-  //   //5280
-  //   answers_[1]?.add("4280");
-  //   answers_[1]?.add("5200");
-  //   answers_[1]?.add("5280");
-  //   answers_[1]?.add("6280");
-
-  //   questions_["How many continents are there"] = "1";
-  //   //7
-  //   answers_[2]?.add("7");
-  //   answers_[2]?.add("6");
-  //   answers_[2]?.add("8");
-  //   answers_[2]?.add("5");
-
-  //   questions_["What is the name of the current US president"] = "4";
-  //   //Joe Biden
-  //   answers_[3]?.add("Barack Obama");
-  //   answers_[3]?.add("Hunter Biden");
-  //   answers_[3]?.add("Donald Trump");
-  //   answers_[3]?.add("Joe Biden");
-  //   print(answers_[0]);
-  // }
-
   void _incrementCounter() {
     setState(() {
       _counter++;
+      q_index++;
     });
   }
 
-  bool _checkAnswer(String question, String key) {
+  bool _checkAnswer(String key) {
+    if (questions_.keys.elementAt(q_index) == key) {
+      return true;
+    }
     return false;
   }
 
@@ -125,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 205, 29, 26),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _incrementCounter,
+                      function: _checkAnswer("1") ? _incrementCounter : () {},
                       key: "1",
                     ),
                     buildButton(
@@ -133,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 36, 202, 236),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _incrementCounter,
+                      function: _checkAnswer("2") ? _incrementCounter : () {},
                       key: "2",
                     ),
                     buildButton(
@@ -141,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 225, 62, 193),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _incrementCounter,
+                      function: _checkAnswer("3") ? _incrementCounter : () {},
                       key: "3",
                     ),
                     buildButton(
@@ -149,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 140, 242, 15),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _incrementCounter,
+                      function: _checkAnswer("4") ? _incrementCounter : () {},
                       key: "4",
                     ),
                   ],
@@ -202,3 +174,36 @@ Container buildButton({
     ),
   );
 }
+
+
+  // void fillQNA() {
+  //   //Fills questions and answers maps with values
+  //   questions_["What is the color of the sun"] = "2";
+  //   //White
+  //   answers_[0]?.add("Yellow");
+  //   answers_[0]?.add("White");
+  //   answers_[0]?.add("Orange");
+  //   answers_[0]?.add("Blue");
+
+  //   questions_["How many feet are in a mile"] = "3";
+  //   //5280
+  //   answers_[1]?.add("4280");
+  //   answers_[1]?.add("5200");
+  //   answers_[1]?.add("5280");
+  //   answers_[1]?.add("6280");
+
+  //   questions_["How many continents are there"] = "1";
+  //   //7
+  //   answers_[2]?.add("7");
+  //   answers_[2]?.add("6");
+  //   answers_[2]?.add("8");
+  //   answers_[2]?.add("5");
+
+  //   questions_["What is the name of the current US president"] = "4";
+  //   //Joe Biden
+  //   answers_[3]?.add("Barack Obama");
+  //   answers_[3]?.add("Hunter Biden");
+  //   answers_[3]?.add("Donald Trump");
+  //   answers_[3]?.add("Joe Biden");
+  //   print(answers_[0]);
+  // }
