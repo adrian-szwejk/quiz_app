@@ -29,18 +29,51 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
-  Map<String, String> questions_ = new Map();
+  int q_index = 0;
+  final Map<String, String> questions_ = {
+    "What is the color of the sun": "2",
+    "How many feet are in a mile": "3",
+    "How many continents are there": "1",
+    "What is the name of the current US president": "4",
+  };
+  final Map<int, Set<String>> answers_ = {
+    0: {"Yellow", "White", "Orange", "Blue"},
+    1: {"4280", "5200", "5280", "6280"},
+    2: {"7", "6", "8", "5"},
+    3: {"Barack Obama", "Hunter Biden", "Donald Trump", "Joe Biden"},
+  };
 
-  void fillQuestions() {
-    questions_["What is the color of the sun"] = "2";
-    //White
-    questions_["How many feet are in a mile"] = "3";
-    //5280
-    questions_["How many continents are there"] = "1";
-    //7
-    questions_["What is the name of the current US president"] = "4";
-    //7
-  }
+  // void fillQNA() {
+  //   //Fills questions and answers maps with values
+  //   questions_["What is the color of the sun"] = "2";
+  //   //White
+  //   answers_[0]?.add("Yellow");
+  //   answers_[0]?.add("White");
+  //   answers_[0]?.add("Orange");
+  //   answers_[0]?.add("Blue");
+
+  //   questions_["How many feet are in a mile"] = "3";
+  //   //5280
+  //   answers_[1]?.add("4280");
+  //   answers_[1]?.add("5200");
+  //   answers_[1]?.add("5280");
+  //   answers_[1]?.add("6280");
+
+  //   questions_["How many continents are there"] = "1";
+  //   //7
+  //   answers_[2]?.add("7");
+  //   answers_[2]?.add("6");
+  //   answers_[2]?.add("8");
+  //   answers_[2]?.add("5");
+
+  //   questions_["What is the name of the current US president"] = "4";
+  //   //Joe Biden
+  //   answers_[3]?.add("Barack Obama");
+  //   answers_[3]?.add("Hunter Biden");
+  //   answers_[3]?.add("Donald Trump");
+  //   answers_[3]?.add("Joe Biden");
+  //   print(answers_[0]);
+  // }
 
   void _incrementCounter() {
     setState(() {
@@ -54,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    fillQuestions();
+    //fillQNA();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -81,14 +114,14 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
                       child: Text(
                         textAlign: TextAlign.center,
-                        questions_.keys.elementAt(0),
+                        "${questions_.keys.elementAt(0)}?",
                         style: const TextStyle(
                           fontSize: 30.0,
                         ),
                       ),
                     ),
                     buildButton(
-                      text: "Answer 1",
+                      text: answers_.values.elementAt(0).elementAt(0),
                       color: const Color.fromARGB(255, 205, 29, 26),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -96,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                       key: "1",
                     ),
                     buildButton(
-                      text: "Answer 2",
+                      text: answers_.values.elementAt(0).elementAt(1),
                       color: const Color.fromARGB(255, 36, 202, 236),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -104,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                       key: "2",
                     ),
                     buildButton(
-                      text: "Answer 3",
+                      text: answers_.values.elementAt(0).elementAt(2),
                       color: const Color.fromARGB(255, 225, 62, 193),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -112,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                       key: "3",
                     ),
                     buildButton(
-                      text: "Answer 4",
+                      text: answers_.values.elementAt(0).elementAt(3),
                       color: const Color.fromARGB(255, 140, 242, 15),
                       fontColor: Colors.black,
                       fontSize: 20.0,
