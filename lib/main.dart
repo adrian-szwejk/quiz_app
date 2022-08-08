@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
               fontColor: Colors.black,
               fontSize: 20.0,
               function: _incrementCounter,
+              key: "1",
             ),
             buildButton(
               text: "Answer 2",
@@ -67,6 +68,7 @@ class _HomePageState extends State<HomePage> {
               fontColor: Colors.black,
               fontSize: 20.0,
               function: _incrementCounter,
+              key: "2",
             ),
             buildButton(
               text: "Answer 3",
@@ -74,6 +76,7 @@ class _HomePageState extends State<HomePage> {
               fontColor: Colors.black,
               fontSize: 20.0,
               function: _incrementCounter,
+              key: "3",
             ),
             buildButton(
               text: "Answer 4",
@@ -81,6 +84,7 @@ class _HomePageState extends State<HomePage> {
               fontColor: Colors.black,
               fontSize: 20.0,
               function: _incrementCounter,
+              key: "4",
             ),
           ],
         ),
@@ -100,10 +104,12 @@ Container buildButton({
   double fontSize = 30.0,
   Color? color,
   VoidCallback? function,
+  String key = "1",
 }) {
   return Container(
     padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
     child: TextButton(
+      key: Key(key),
       onPressed: function,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(color),
