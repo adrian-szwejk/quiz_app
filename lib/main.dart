@@ -30,11 +30,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
   int q_index = 0;
-  final Map<String, String> questions_ = {
-    "What is the color of the sun": "2",
-    "How many feet are in a mile": "3",
-    "How many continents are there": "1",
-    "What is the name of the current US president": "4",
+  final Map<String, int> questions_ = {
+    "What is the color of the sun": 1,
+    "How many feet are in a mile": 2,
+    "How many continents are there": 0,
+    "What is the name of the current US president": 3,
   };
   final Map<int, Set<String>> answers_ = {
     0: {"Yellow", "White", "Orange", "Blue"},
@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  bool _checkAnswer(String key) {
-    if (questions_.keys.elementAt(q_index) == key) {
+  bool _checkAnswer(int key) {
+    if (questions_.values.elementAt(q_index) == key) {
       return true;
     }
     return false;
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                'Correct: ' + '$_counter',
+                'Correct: $_counter Idx: $q_index',
                 style: const TextStyle(
                   fontSize: 20.0,
                 ),
@@ -97,32 +97,32 @@ class _HomePageState extends State<HomePage> {
                       color: const Color.fromARGB(255, 205, 29, 26),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _checkAnswer("1") ? _incrementCounter : () {},
-                      key: "1",
+                      function: _checkAnswer(0) ? _incrementCounter : () {},
+                      key: "0",
                     ),
                     buildButton(
                       text: answers_.values.elementAt(0).elementAt(1),
                       color: const Color.fromARGB(255, 36, 202, 236),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _checkAnswer("2") ? _incrementCounter : () {},
-                      key: "2",
+                      function: _checkAnswer(1) ? _incrementCounter : () {},
+                      key: "1",
                     ),
                     buildButton(
                       text: answers_.values.elementAt(0).elementAt(2),
                       color: const Color.fromARGB(255, 225, 62, 193),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _checkAnswer("3") ? _incrementCounter : () {},
-                      key: "3",
+                      function: _checkAnswer(2) ? _incrementCounter : () {},
+                      key: "2",
                     ),
                     buildButton(
                       text: answers_.values.elementAt(0).elementAt(3),
                       color: const Color.fromARGB(255, 140, 242, 15),
                       fontColor: Colors.black,
                       fontSize: 20.0,
-                      function: _checkAnswer("4") ? _incrementCounter : () {},
-                      key: "4",
+                      function: _checkAnswer(3) ? _incrementCounter : () {},
+                      key: "3",
                     ),
                   ],
                 ),
