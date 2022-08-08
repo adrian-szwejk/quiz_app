@@ -86,14 +86,14 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
                       child: Text(
                         textAlign: TextAlign.center,
-                        "${questions_.keys.elementAt(0)}?",
+                        "${questions_.keys.elementAt(q_index)}?",
                         style: const TextStyle(
                           fontSize: 30.0,
                         ),
                       ),
                     ),
                     buildButton(
-                      text: answers_.values.elementAt(0).elementAt(0),
+                      text: answers_.values.elementAt(q_index).elementAt(0),
                       color: const Color.fromARGB(255, 205, 29, 26),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       key: "0",
                     ),
                     buildButton(
-                      text: answers_.values.elementAt(0).elementAt(1),
+                      text: answers_.values.elementAt(q_index).elementAt(1),
                       color: const Color.fromARGB(255, 36, 202, 236),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                       key: "1",
                     ),
                     buildButton(
-                      text: answers_.values.elementAt(0).elementAt(2),
+                      text: answers_.values.elementAt(q_index).elementAt(2),
                       color: const Color.fromARGB(255, 225, 62, 193),
                       fontColor: Colors.black,
                       fontSize: 20.0,
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                       key: "2",
                     ),
                     buildButton(
-                      text: answers_.values.elementAt(0).elementAt(3),
+                      text: answers_.values.elementAt(q_index).elementAt(3),
                       color: const Color.fromARGB(255, 140, 242, 15),
                       fontColor: Colors.black,
                       fontSize: 20.0,
