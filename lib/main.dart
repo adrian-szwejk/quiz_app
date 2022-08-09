@@ -28,8 +28,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _nav_idx = 0;
   int _counter = 0;
   int _index = 0;
+
+  final Widget _myHome = MyHome();
+  final Widget _myProfile = MyProfile();
+  final Widget _myLearn = MyLearn();
+
   final Map<String, int> questions_ = {
     "What is the color of the sun": 1,
     "How many feet are in a mile": 2,
@@ -133,7 +139,8 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: [
+        currentIndex: _nav_idx,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -147,6 +154,9 @@ class _HomePageState extends State<HomePage> {
             label: 'Profile',
           ),
         ],
+        onTap: (int index) {
+          this.onTapHandler(index);
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -156,8 +166,60 @@ class _HomePageState extends State<HomePage> {
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  //Helper functions for bottom nav bar
+  Widget getBody() {
+    if (_nav_idx == 0) {
+      return this._myHome;
+    } else if (_nav_idx == 1) {
+      return this._myLearn;
+    } else {
+      return this._myProfile;
+    }
+  }
+
+  void onTapHandler(int index) {
+    setState(() {
+      _nav_idx = index;
+    });
+  }
 }
 
+//Classes for each screen on bottom nav bar
+class MyProfile extends StatelessWidget {
+  const MyProfile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("My Profile"),
+    );
+  }
+}
+
+class MyHome extends StatelessWidget {
+  const MyHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("Home screen"),
+    );
+  }
+}
+
+class MyLearn extends StatelessWidget {
+  const MyLearn({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("Learning Screen"),
+    );
+  }
+}
+
+//Helper function to build buttons
 Container buildButton({
   String text = "",
   Color fontColor = Colors.black,
