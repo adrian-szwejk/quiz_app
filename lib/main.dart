@@ -80,10 +80,10 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Align(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
+                      padding:
+                          const EdgeInsets.fromLTRB(15.0, 70.0, 15.0, 10.0),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${questions_.keys.elementAt(_index)}?",
@@ -131,11 +131,29 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Learn',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.face),
+            label: 'Profile',
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -149,7 +167,7 @@ Container buildButton({
   String key = "1",
 }) {
   return Container(
-    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 30.0),
+    padding: const EdgeInsets.fromLTRB(10.0, 50.0, 10.0, 30.0),
     child: TextButton(
       key: Key(key),
       onPressed: () {
@@ -165,14 +183,14 @@ Container buildButton({
             return Colors.red;
           }
           if (states.contains(MaterialState.hovered) && function != null) {
-            return Colors.blue;
+            return color.withOpacity(0.5);
           }
           return color;
         }),
         //backgroundColor: MaterialStateProperty.all(color),
         elevation: MaterialStateProperty.all(3.0),
         padding: MaterialStateProperty.all(const EdgeInsets.all(10.0)),
-        fixedSize: MaterialStateProperty.all(const Size.fromWidth(350)),
+        fixedSize: MaterialStateProperty.all(const Size(350, 50)),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
