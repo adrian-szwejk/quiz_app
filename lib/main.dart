@@ -69,6 +69,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.grey,
         child: Image.network(
           'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+          width: double.infinity,
+          height: 280,
+          fit: BoxFit.cover,
         ),
       );
   @override
@@ -157,7 +160,12 @@ class _HomePageState extends State<HomePage> {
           ),
           //Home
           Scaffold(
-            body: buildCoverImage(),
+            body: Stack(
+              alignment: Alignment.center,
+              children: [
+                buildCoverImage(),
+              ],
+            ),
           ),
         ],
       ),
