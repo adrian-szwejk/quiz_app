@@ -159,7 +159,34 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           const Divider(),
           const SizedBox(height: 16),
+          buildAbout(),
           const SizedBox(height: 32),
+        ],
+      );
+
+  Widget buildAbout() => Column(
+        children: const [
+          Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'About',
+                style: TextStyle(
+                  fontSize: 30.0,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              'Pre-Engineering Student at the University of Illinois Urbana-Champaign with many years of experience in mobile app development and CAD software. I am currently on track to transfer into the Grainger College engineering for either Computer Science + Economics or Civil Engineering.',
+              style: TextStyle(
+                fontSize: 17.0,
+              ),
+            ),
+          ),
         ],
       );
 
