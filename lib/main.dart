@@ -110,6 +110,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //Builds the social media icons used in profile screen
+  Widget buildSocialIcon(IconData icon) => CircleAvatar(
+        radius: 25,
+        child: Material(
+          shape: const CircleBorder(),
+          clipBehavior: Clip.hardEdge,
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            child: Center(
+              child: Icon(
+                icon,
+                size: 32,
+              ),
+            ),
+          ),
+        ),
+      );
+
   Widget buildContent() => Column(
         children: [
           const SizedBox(height: 8),
@@ -142,17 +161,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           const SizedBox(height: 32),
         ],
-      );
-
-  //Builds the social media icons used in profile screen
-  Widget buildSocialIcon(IconData icon) => CircleAvatar(
-        radius: 25,
-        child: Center(
-          child: Icon(
-            icon,
-            size: 32,
-          ),
-        ),
       );
 
   @override
