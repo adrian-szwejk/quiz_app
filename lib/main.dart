@@ -64,6 +64,13 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
+  //Cover image widget for profile
+  Widget buildCoverImage() => Container(
+        color: Colors.grey,
+        child: Image.network(
+          'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        ),
+      );
   @override
   Widget build(BuildContext context) {
     //fillQNA();
@@ -149,9 +156,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           //Home
-          const Text(
-            'Profile',
-            style: optionStyle,
+          Scaffold(
+            body: buildCoverImage(),
           ),
         ],
       ),
@@ -238,6 +244,39 @@ Container buildButton({
     ),
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // void fillQNA() {
