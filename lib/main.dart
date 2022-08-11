@@ -86,22 +86,25 @@ class _HomePageState extends State<HomePage> {
         backgroundImage: const NetworkImage(
             'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
       );
+
   @override
   Widget build(BuildContext context) {
     //fillQNA();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
       body: IndexedStack(
         index: _navIdx,
         children: <Widget>[
           //Stack
           //Home
-          const Text(
-            'Home',
-            style: optionStyle,
+          Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
+              centerTitle: true,
+            ),
+            body: const Text(
+              'Home',
+              style: optionStyle,
+            ),
           ),
           //Learn
           Center(
@@ -109,10 +112,13 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.topRight,
-                  child: Text(
-                    'Correct: $_counter Idx: $_index',
-                    style: const TextStyle(
-                      fontSize: 20.0,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 0.0),
+                    child: Text(
+                      'Correct: $_counter Idx: $_index',
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
