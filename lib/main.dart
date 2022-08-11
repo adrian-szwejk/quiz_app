@@ -28,13 +28,115 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _nav_idx = 0;
-  int _counter = 0;
-  int _index = 0;
+  //Navigation bar options
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
 
+  //Other screens
   final Widget _myHome = MyHome();
   final Widget _myProfile = MyProfile();
   final Widget _myLearn = MyLearn();
+
+  //Other variables
+
+  int _nav_idx = 0;
+  
+
+  @override
+  Widget build(BuildContext context) {
+    //fillQNA();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: Center (
+        child: _widgetOptions.elementAt(_nav_idx),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _nav_idx,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Learn',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.face),
+            label: 'Profile',
+          ),
+        ],
+        onTap: (int index) {
+          this.onTapHandler(index);
+        },
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  //Helper functions for bottom nav bar
+  Widget getBody() {
+    if (_nav_idx == 0) {
+      return this._myHome;
+    } else if (_nav_idx == 1) {
+      return this._myLearn;
+    } else {
+      return this._myProfile;
+    }
+  }
+
+  void onTapHandler(int index) {
+    setState(() {
+      _nav_idx = index;
+    });
+  }
+}
+
+//Classes for each screen on bottom nav bar
+class MyProfile extends StatelessWidget {
+  const MyProfile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("My Profile"),
+    );
+  }
+}
+
+class MyHome extends StatelessWidget {
+  const MyHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("Home screen"),
+    );
+  }
+}
+
+class MyLearn extends State<HomePage> {
+
+  int _counter = 0;
+  int _index = 0;
 
   final Map<String, int> questions_ = {
     "What is the color of the sun": 1,
@@ -65,13 +167,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //fillQNA();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: Center(
+    return  Center(
         child: Column(
           children: <Widget>[
             Align(
@@ -89,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Padding(
                       padding:
-                          const EdgeInsets.fromLTRB(15.0, 70.0, 15.0, 10.0),
+                          const EdgeInsets.fromLTRB(15.0, 50.0, 15.0, 10.0),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${questions_.keys.elementAt(_index)}?",
@@ -137,89 +233,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _nav_idx,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Learn',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.face),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (int index) {
-          this.onTapHandler(index);
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  //Helper functions for bottom nav bar
-  Widget getBody() {
-    if (_nav_idx == 0) {
-      return this._myHome;
-    } else if (_nav_idx == 1) {
-      return this._myLearn;
-    } else {
-      return this._myProfile;
-    }
-  }
-
-  void onTapHandler(int index) {
-    setState(() {
-      _nav_idx = index;
-    });
-  }
-}
-
-//Classes for each screen on bottom nav bar
-class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("My Profile"),
-    );
-  }
-}
-
-class MyHome extends StatelessWidget {
-  const MyHome({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Home screen"),
-    );
-  }
-}
-
-class MyLearn extends StatelessWidget {
-  const MyLearn({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Learning Screen"),
-    );
   }
 }
 
 //Helper function to build buttons
+
 Container buildButton({
   String text = "",
   Color fontColor = Colors.black,
@@ -229,7 +247,7 @@ Container buildButton({
   String key = "1",
 }) {
   return Container(
-    padding: const EdgeInsets.fromLTRB(10.0, 50.0, 10.0, 30.0),
+    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 30.0),
     child: TextButton(
       key: Key(key),
       onPressed: () {
@@ -242,10 +260,10 @@ Container buildButton({
             return Colors.green;
           }
           if (states.contains(MaterialState.pressed) && function != null) {
-            return Colors.red;
+            return color.withOpacity(0.5);
           }
           if (states.contains(MaterialState.hovered) && function != null) {
-            return color.withOpacity(0.5);
+            return color.withOpacity(0.75);
           }
           return color;
         }),
