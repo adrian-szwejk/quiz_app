@@ -110,15 +110,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildContent() => Column(
-        children: const [
-          SizedBox(height: 8),
-          Text(
-            'hello',
+        children: [
+          const SizedBox(height: 8),
+          const Text(
+            'Adrian Szwejkowski',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
+          const SizedBox(height: 8),
+          Text(
+            'Student at the University of Illinois \nUrbana-Champaign',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [],
+          ),
+          const SizedBox(height: 16),
+          const Divider(),
+          const SizedBox(height: 16),
+          const SizedBox(height: 32),
         ],
       );
 
