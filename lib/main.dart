@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -126,13 +127,32 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [],
+            children: [
+              buildSocialIcon(FontAwesomeIcons.github),
+              const SizedBox(width: 15),
+              buildSocialIcon(FontAwesomeIcons.slack),
+              const SizedBox(width: 15),
+              buildSocialIcon(FontAwesomeIcons.linkedin),
+              const SizedBox(width: 15),
+              buildSocialIcon(FontAwesomeIcons.facebook),
+            ],
           ),
           const SizedBox(height: 16),
           const Divider(),
           const SizedBox(height: 16),
           const SizedBox(height: 32),
         ],
+      );
+
+  //Builds the social media icons used in profile screen
+  Widget buildSocialIcon(IconData icon) => CircleAvatar(
+        radius: 25,
+        child: Center(
+          child: Icon(
+            icon,
+            size: 32,
+          ),
+        ),
       );
 
   @override
