@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  //Cover image widget for profile
+  //Cover image widget for profile screen
   Widget buildCoverImage() => Container(
         color: Colors.grey,
         child: Image.network(
@@ -73,6 +73,13 @@ class _HomePageState extends State<HomePage> {
           height: 280,
           fit: BoxFit.cover,
         ),
+      );
+
+  //Profile image function for profile screen
+  Widget buildProfileImage() => CircleAvatar(
+        backgroundColor: Colors.grey[800],
+        backgroundImage: const NetworkImage(
+            'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
       );
   @override
   Widget build(BuildContext context) {
@@ -164,6 +171,8 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.center,
               children: [
                 buildCoverImage(),
+                //Stacked from bottom up so pfp on top of cover image
+                buildProfileImage(),
               ],
             ),
           ),
