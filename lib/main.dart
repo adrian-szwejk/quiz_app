@@ -87,6 +87,41 @@ class _HomePageState extends State<HomePage> {
             'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
       );
 
+  //Extracted stack that builds cover image / pfp
+  Widget buildTop() {
+    final double bottom = profileHeight / 2;
+    final top = coverHeight - profileHeight / 2;
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(bottom: bottom),
+          child: buildCoverImage(),
+        ),
+        //Stacked from bottom up so pfp on top of cover image
+        Positioned(
+          //Distance btwn top of screen
+          top: top,
+          child: buildProfileImage(),
+        ),
+      ],
+    );
+  }
+
+  Widget buildContent() => Column(
+        children: const [
+          SizedBox(height: 8),
+          Text(
+            'hello',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ],
+      );
+
   @override
   Widget build(BuildContext context) {
     //fillQNA();
@@ -176,19 +211,15 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          //Home
+          //Profile screen
           Scaffold(
-            body: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                buildCoverImage(),
-                //Stacked from bottom up so pfp on top of cover image
-                Positioned(
-                  //Distance btwn top of screen
-                  top: coverHeight - profileHeight / 2,
-                  child: buildProfileImage(),
-                ),
+            body: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                //Cover image/pfp
+                buildTop(),
+                //Socials & other info
+                buildContent(),
               ],
             ),
           ),
