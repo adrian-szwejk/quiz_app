@@ -33,6 +33,10 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
   int _navIdx = 0;
 
+  //Variables for profile
+  final double coverHeight = 280;
+  final int profileHeight = 144;
+
   final Map<String, int> questions_ = {
     "What is the color of the sun": 1,
     "How many feet are in a mile": 2,
@@ -70,13 +74,14 @@ class _HomePageState extends State<HomePage> {
         child: Image.network(
           'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
           width: double.infinity,
-          height: 280,
+          height: coverHeight,
           fit: BoxFit.cover,
         ),
       );
 
   //Profile image function for profile screen
   Widget buildProfileImage() => CircleAvatar(
+        radius: profileHeight / 2,
         backgroundColor: Colors.grey[800],
         backgroundImage: const NetworkImage(
             'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
@@ -168,11 +173,16 @@ class _HomePageState extends State<HomePage> {
           //Home
           Scaffold(
             body: Stack(
+              clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
                 buildCoverImage(),
                 //Stacked from bottom up so pfp on top of cover image
-                buildProfileImage(),
+                Positioned(
+                  //Distance btwn top of screen
+                  top: coverHeight - profileHeight / 2,
+                  child: buildProfileImage(),
+                ),
               ],
             ),
           ),
@@ -262,68 +272,34 @@ Container buildButton({
   );
 }
 
+// void fillQNA() {
+//   //Fills questions and answers maps with values
+//   questions_["What is the color of the sun"] = "2";
+//   //White
+//   answers_[0]?.add("Yellow");
+//   answers_[0]?.add("White");
+//   answers_[0]?.add("Orange");
+//   answers_[0]?.add("Blue");
 
+//   questions_["How many feet are in a mile"] = "3";
+//   //5280
+//   answers_[1]?.add("4280");
+//   answers_[1]?.add("5200");
+//   answers_[1]?.add("5280");
+//   answers_[1]?.add("6280");
 
+//   questions_["How many continents are there"] = "1";
+//   //7
+//   answers_[2]?.add("7");
+//   answers_[2]?.add("6");
+//   answers_[2]?.add("8");
+//   answers_[2]?.add("5");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // void fillQNA() {
-  //   //Fills questions and answers maps with values
-  //   questions_["What is the color of the sun"] = "2";
-  //   //White
-  //   answers_[0]?.add("Yellow");
-  //   answers_[0]?.add("White");
-  //   answers_[0]?.add("Orange");
-  //   answers_[0]?.add("Blue");
-
-  //   questions_["How many feet are in a mile"] = "3";
-  //   //5280
-  //   answers_[1]?.add("4280");
-  //   answers_[1]?.add("5200");
-  //   answers_[1]?.add("5280");
-  //   answers_[1]?.add("6280");
-
-  //   questions_["How many continents are there"] = "1";
-  //   //7
-  //   answers_[2]?.add("7");
-  //   answers_[2]?.add("6");
-  //   answers_[2]?.add("8");
-  //   answers_[2]?.add("5");
-
-  //   questions_["What is the name of the current US president"] = "4";
-  //   //Joe Biden
-  //   answers_[3]?.add("Barack Obama");
-  //   answers_[3]?.add("Hunter Biden");
-  //   answers_[3]?.add("Donald Trump");
-  //   answers_[3]?.add("Joe Biden");
-  //   print(answers_[0]);
-  // }
+//   questions_["What is the name of the current US president"] = "4";
+//   //Joe Biden
+//   answers_[3]?.add("Barack Obama");
+//   answers_[3]?.add("Hunter Biden");
+//   answers_[3]?.add("Donald Trump");
+//   answers_[3]?.add("Joe Biden");
+//   print(answers_[0]);
+// }
