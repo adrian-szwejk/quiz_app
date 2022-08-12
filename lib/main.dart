@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -214,8 +215,6 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  String assetName = 'assets/icons/subtle-prism.svg';
-  //C:/Users/szwej/Flutter Projects/quiz_app/quiz_app/assets/icons/subtle-prism.svg
   @override
   Widget build(BuildContext context) {
     //fillQNA();
@@ -226,16 +225,17 @@ class _HomePageState extends State<HomePage> {
           //Stack
           //Home
           Scaffold(
-              body: Stack(
-            alignment: Alignment.center,
-            children: [
-              SvgPicture.asset(assetName),
-              const Text(
-                'Home',
-                style: optionStyle,
-              ),
-            ],
-          )),
+            body: Stack(
+              alignment: Alignment.center,
+              children: [
+                WebsafeSvg.asset("assets/icons/bg.svg"),
+                const Text(
+                  'Home',
+                  style: optionStyle,
+                ),
+              ],
+            ),
+          ),
           //Learn
           Center(
             child: Column(
