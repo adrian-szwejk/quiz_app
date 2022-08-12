@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -38,6 +39,15 @@ class _HomePageState extends State<HomePage> {
   final double coverHeight = 280;
   final int profileHeight = 144;
 
+  //Urls for social media buttons
+  String git_url = 'https://github.com/adrian-szwejk';
+  String slack_url =
+      'https://app.slack.com/client/T02C95SRPR7/C02C95SSCKB/rimeto_profile/U02BWUGPP7G';
+  String linked_url =
+      'https://www.linkedin.com/in/adrian-szwejkowski-3202a81ab/';
+  String fb_url = 'https://www.facebook.com/profile.php?id=100071873150146';
+
+  //Questions and answers for learning screen
   final Map<String, int> questions_ = {
     "What is the color of the sun": 1,
     "How many feet are in a mile": 2,
@@ -110,8 +120,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //Async function to lauch urls when clicking on social media icons
+  launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   //Builds the social media icons used in profile screen
-  Widget buildSocialIcon(IconData icon) => CircleAvatar(
+  Widget buildSocialIcon(IconData icon, String url) => CircleAvatar(
         radius: 25,
         child: Material(
           shape: const CircleBorder(),
@@ -147,13 +166,13 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildSocialIcon(FontAwesomeIcons.github),
+              buildSocialIcon(FontAwesomeIcons.github, git_url),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.slack),
+              buildSocialIcon(FontAwesomeIcons.slack, slack_url),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.linkedin),
+              buildSocialIcon(FontAwesomeIcons.linkedin, linked_url),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.facebook),
+              buildSocialIcon(FontAwesomeIcons.facebook, fb_url),
             ],
           ),
           const SizedBox(height: 16),
