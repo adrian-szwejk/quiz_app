@@ -34,18 +34,21 @@ class _HomePageState extends State<HomePage> {
   int _counter = 0;
   int _index = 0;
   int _navIdx = 0;
+  int urlIdx = 0;
 
   //Variables for profile
   final double coverHeight = 280;
   final int profileHeight = 144;
 
   //Urls for social media buttons
-  String git_url = 'https://github.com/adrian-szwejk';
-  String slack_url =
-      'https://app.slack.com/client/T02C95SRPR7/C02C95SSCKB/rimeto_profile/U02BWUGPP7G';
-  String linked_url =
-      'https://www.linkedin.com/in/adrian-szwejkowski-3202a81ab/';
-  String fb_url = 'https://www.facebook.com/profile.php?id=100071873150146';
+  Set<Uri> url_list = {
+    Uri.parse('https://flutter.dev'),
+    Uri.parse('https://github.com/adrian-szwejk'),
+    Uri.parse(
+        'https://app.slack.com/client/T02C95SRPR7/C02C95SSCKB/rimeto_profile/U02BWUGPP7G'),
+    Uri.parse('https://www.linkedin.com/in/adrian-szwejkowski-3202a81ab/'),
+    Uri.parse('https://www.facebook.com/profile.php?id=100071873150146'),
+  };
 
   //Questions and answers for learning screen
   final Map<String, int> questions_ = {
@@ -121,23 +124,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Async function to lauch urls when clicking on social media icons
-  launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  Future<void> launchUrl() async {
+    Uri url = url_list.elementAt(urlIdx);
+    if (await canLaunchUrl(url)) {
+      await launchUrl();
     } else {
       throw 'Could not launch $url';
     }
   }
 
   //Builds the social media icons used in profile screen
-  Widget buildSocialIcon(IconData icon, String url) => CircleAvatar(
+  Widget buildSocialIcon(IconData icon) => CircleAvatar(
         radius: 25,
         child: Material(
           shape: const CircleBorder(),
           clipBehavior: Clip.hardEdge,
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: launchUrl,
             child: Center(
               child: Icon(
                 icon,
@@ -166,13 +170,13 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildSocialIcon(FontAwesomeIcons.github, git_url),
+              buildSocialIcon(FontAwesomeIcons.github),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.slack, slack_url),
+              buildSocialIcon(FontAwesomeIcons.slack),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.linkedin, linked_url),
+              buildSocialIcon(FontAwesomeIcons.linkedin),
               const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.facebook, fb_url),
+              buildSocialIcon(FontAwesomeIcons.facebook),
             ],
           ),
           const SizedBox(height: 16),
