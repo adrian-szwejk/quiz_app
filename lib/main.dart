@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Async function to lauch urls when clicking on social media icons
-  Future<void> launchUrl() async {
+  launchUrl() async {
     Uri url = url_list.elementAt(urlIdx);
     if (await canLaunchUrl(url)) {
       await launchUrl();
@@ -213,6 +214,8 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
+  String assetName = 'assets/icons/subtle-prism.svg';
+  //C:/Users/szwej/Flutter Projects/quiz_app/quiz_app/assets/icons/subtle-prism.svg
   @override
   Widget build(BuildContext context) {
     //fillQNA();
@@ -223,15 +226,16 @@ class _HomePageState extends State<HomePage> {
           //Stack
           //Home
           Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-              centerTitle: true,
-            ),
-            body: const Text(
-              'Home',
-              style: optionStyle,
-            ),
-          ),
+              body: Stack(
+            alignment: Alignment.center,
+            children: [
+              SvgPicture.asset(assetName),
+              const Text(
+                'Home',
+                style: optionStyle,
+              ),
+            ],
+          )),
           //Learn
           Center(
             child: Column(
@@ -265,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         buildButton(
                           text: answers_.values.elementAt(_index).elementAt(0),
-                          color: const Color.fromARGB(255, 205, 29, 26),
+                          color: const Color.fromARGB(255, 222, 219, 219),
                           fontColor: Colors.black,
                           fontSize: 20.0,
                           function: _checkAnswer(0) ? _incrementCounter : () {},
@@ -273,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         buildButton(
                           text: answers_.values.elementAt(_index).elementAt(1),
-                          color: const Color.fromARGB(255, 36, 202, 236),
+                          color: const Color.fromARGB(255, 222, 219, 219),
                           fontColor: Colors.black,
                           fontSize: 20.0,
                           function: _checkAnswer(1) ? _incrementCounter : () {},
@@ -281,7 +285,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         buildButton(
                           text: answers_.values.elementAt(_index).elementAt(2),
-                          color: const Color.fromARGB(255, 225, 62, 193),
+                          color: const Color.fromARGB(255, 222, 219, 219),
                           fontColor: Colors.black,
                           fontSize: 20.0,
                           function: _checkAnswer(2) ? _incrementCounter : () {},
@@ -289,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         buildButton(
                           text: answers_.values.elementAt(_index).elementAt(3),
-                          color: const Color.fromARGB(255, 140, 242, 15),
+                          color: const Color.fromARGB(255, 222, 219, 219),
                           fontColor: Colors.black,
                           fontSize: 20.0,
                           function: _checkAnswer(3) ? _incrementCounter : () {},
@@ -385,6 +389,9 @@ Container buildButton({
         fixedSize: MaterialStateProperty.all(const Size(350, 50)),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
+            side: const BorderSide(
+              color: Colors.purple,
+            ),
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
