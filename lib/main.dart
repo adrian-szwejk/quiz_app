@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+
+//SVGS (NOT WORKING)
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
+// import 'package:flutter/foundation.dart';
 
 void main() {
   runApp(const QuizApp());
@@ -84,6 +87,16 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
+  //Background for home screen
+  Widget buildHomeBg() => Container(
+        color: Colors.grey,
+        child: Image.network(
+          'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+        ),
+      );
   //Cover image widget for profile screen
   Widget buildCoverImage() => Container(
         color: Colors.grey,
@@ -143,7 +156,7 @@ class _HomePageState extends State<HomePage> {
           clipBehavior: Clip.hardEdge,
           color: Colors.transparent,
           child: InkWell(
-            onTap: launchUrl,
+            onTap: () {},
             child: Center(
               child: Icon(
                 icon,
@@ -228,7 +241,7 @@ class _HomePageState extends State<HomePage> {
             body: Stack(
               alignment: Alignment.center,
               children: [
-                WebsafeSvg.asset("assets/icons/bg.svg"),
+                buildHomeBg(),
                 const Text(
                   'Home',
                   style: optionStyle,
