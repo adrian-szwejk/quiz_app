@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //SVGS (NOT WORKING)
-// import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:flutter/foundation.dart';
 
@@ -90,12 +90,12 @@ class _HomePageState extends State<HomePage> {
   //Background for home screen
   Widget buildHomeBg() => Container(
         color: Colors.grey,
-        child: Image.network(
-          'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.cover,
-        ),
+        // child: SvgPicture.asset(
+        //   'assets/icons/bg.svg',
+        //   width: double.infinity,
+        //   height: double.infinity,
+        //   fit: BoxFit.cover,
+        // ),
       );
   //Cover image widget for profile screen
   Widget buildCoverImage() => Container(
@@ -239,12 +239,36 @@ class _HomePageState extends State<HomePage> {
           //Home
           Scaffold(
             body: Stack(
-              alignment: Alignment.center,
               children: [
                 buildHomeBg(),
-                const Text(
-                  'Home',
-                  style: optionStyle,
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Spacer(),
+                        Text(
+                          "Let's play Quiz,",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                        ),
+                        Text("Enter your name below",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal)),
+                        TextField(),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -334,6 +358,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         currentIndex: _navIdx,
         items: const [
