@@ -12,6 +12,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          buildHomeBg(),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -79,3 +80,13 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
+
+Widget buildHomeBg() => Container(
+      color: Colors.grey,
+      // child: SvgPicture.asset(
+      //   'assets/icons/bg.svg',
+      //   width: double.infinity,
+      //   height: double.infinity,
+      //   fit: BoxFit.cover,
+      // ),
+    );

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/welcome_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiz_app/quiz_screen.dart';
+import 'package:quiz_app/welcome_screen.dart';
 
 //SVGS (NOT WORKING)
 // import 'package:websafe_svg/websafe_svg.dart';
