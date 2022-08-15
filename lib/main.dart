@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quiz_app/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -264,7 +265,28 @@ class _HomePageState extends State<HomePage> {
                                 ?.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.normal)),
-                        TextField(),
+                        const Spacer(),
+                        const TextField(
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintStyle:
+                                TextStyle(fontSize: 15.0, color: Colors.white),
+                            hintText: 'Full name',
+                            filled: true,
+                            fillColor: Colors.grey,
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              gradient: kPrimaryGradient,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                        ),
                         const Spacer(),
                       ],
                     ),
