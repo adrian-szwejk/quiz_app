@@ -5,6 +5,7 @@ import 'package:quiz_app/main.dart';
 //import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/build_functions.dart';
 import 'package:quiz_app/data.dart';
+import 'package:quiz_app/quiz_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -53,9 +54,8 @@ class WelcomeScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage(
-                                  title: 'quiz app',
-                                )),
+                          builder: (context) => const QuizScreen(),
+                        ),
                       );
                     },
                     child: Container(
