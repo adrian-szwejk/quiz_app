@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 //import 'package:get/get.dart';
-import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/main.dart';
 //import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/build_functions.dart';
+import 'package:quiz_app/data.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
