@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/main.dart';
 //import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import 'package:quiz_app/build_functions.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -89,13 +90,3 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
-
-Widget buildHomeBg() => Container(
-      color: Colors.grey,
-      // child: SvgPicture.asset(
-      //   'assets/icons/bg.svg',
-      //   width: double.infinity,
-      //   height: double.infinity,
-      //   fit: BoxFit.cover,
-      // ),
-    );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/welcome_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiz_app/quiz_screen.dart';
 import 'package:quiz_app/welcome_screen.dart';
+import 'package:quiz_app/data.dart';
+import 'package:quiz_app/build_functions.dart';
 
 //SVGS (NOT WORKING)
 // import 'package:websafe_svg/websafe_svg.dart';
@@ -45,34 +47,6 @@ class _HomePageState extends State<HomePage> {
   int _navIdx = 0;
   int urlIdx = 0;
 
-  //Variables for profile
-  final double coverHeight = 280;
-  final int profileHeight = 144;
-
-  //Urls for social media buttons
-  Set<Uri> url_list = {
-    Uri.parse('https://flutter.dev'),
-    Uri.parse('https://github.com/adrian-szwejk'),
-    Uri.parse(
-        'https://app.slack.com/client/T02C95SRPR7/C02C95SSCKB/rimeto_profile/U02BWUGPP7G'),
-    Uri.parse('https://www.linkedin.com/in/adrian-szwejkowski-3202a81ab/'),
-    Uri.parse('https://www.facebook.com/profile.php?id=100071873150146'),
-  };
-
-  //Questions and answers for learning screen
-  final Map<String, int> questions_ = {
-    "What is the color of the sun": 1,
-    "How many feet are in a mile": 2,
-    "How many continents are there": 0,
-    "What is the name of the current US president": 3,
-  };
-  final Map<int, Set<String>> answers_ = {
-    0: {"Yellow", "White", "Orange", "Blue"},
-    1: {"4280", "5200", "5280", "6280"},
-    2: {"7", "6", "8", "5"},
-    3: {"Barack Obama", "Hunter Biden", "Donald Trump", "Joe Biden"},
-  };
-
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -87,61 +61,6 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
-  //Navigation bar options
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  //Background for home screen
-  Widget buildHomeBg() => Container(
-        color: Colors.grey,
-        // child: SvgPicture.asset(
-        //   'assets/icons/bg.svg',
-        //   width: double.infinity,
-        //   height: double.infinity,
-        //   fit: BoxFit.cover,
-        // ),
-      );
-  //Cover image widget for profile screen
-  Widget buildCoverImage() => Container(
-        color: Colors.grey,
-        child: Image.network(
-          'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-          width: double.infinity,
-          height: coverHeight,
-          fit: BoxFit.cover,
-        ),
-      );
-
-  //Profile image function for profile screen
-  Widget buildProfileImage() => CircleAvatar(
-        radius: profileHeight / 2,
-        backgroundColor: Colors.grey[800],
-        backgroundImage: const NetworkImage(
-            'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
-      );
-
-  //Extracted stack that builds cover image / pfp
-  Widget buildTop() {
-    final double bottom = profileHeight / 2;
-    final top = coverHeight - profileHeight / 2;
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: bottom),
-          child: buildCoverImage(),
-        ),
-        //Stacked from bottom up so pfp on top of cover image
-        Positioned(
-          //Distance btwn top of screen
-          top: top,
-          child: buildProfileImage(),
-        ),
-      ],
-    );
-  }
-
   //Async function to lauch urls when clicking on social media icons
   launchUrl() async {
     Uri url = url_list.elementAt(urlIdx);
@@ -151,86 +70,6 @@ class _HomePageState extends State<HomePage> {
       throw 'Could not launch $url';
     }
   }
-
-  //Builds the social media icons used in profile screen
-  Widget buildSocialIcon(IconData icon) => CircleAvatar(
-        radius: 25,
-        child: Material(
-          shape: const CircleBorder(),
-          clipBehavior: Clip.hardEdge,
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () {},
-            child: Center(
-              child: Icon(
-                icon,
-                size: 32,
-              ),
-            ),
-          ),
-        ),
-      );
-
-  Widget buildContent() => Column(
-        children: [
-          const SizedBox(height: 8),
-          const Text(
-            'Adrian Szwejkowski',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Student at the University of Illinois \nUrbana-Champaign',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20, color: Colors.grey[600]),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildSocialIcon(FontAwesomeIcons.github),
-              const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.slack),
-              const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.linkedin),
-              const SizedBox(width: 15),
-              buildSocialIcon(FontAwesomeIcons.facebook),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Divider(),
-          const SizedBox(height: 16),
-          buildAbout(),
-          const SizedBox(height: 32),
-        ],
-      );
-
-  Widget buildAbout() => Column(
-        children: const [
-          Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'About',
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              'Pre-Engineering Student at the University of Illinois Urbana-Champaign with many years of experience in mobile app development and CAD software. I am currently on track to transfer into the Grainger College engineering for either Computer Science + Economics or Civil Engineering.',
-              style: TextStyle(
-                fontSize: 17.0,
-              ),
-            ),
-          ),
-        ],
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -365,90 +204,3 @@ class _HomePageState extends State<HomePage> {
     });
   }
 }
-
-//Helper function to build buttons
-
-Container buildButton({
-  String text = "",
-  Color fontColor = Colors.black,
-  double fontSize = 30.0,
-  Color color = Colors.grey,
-  VoidCallback? function,
-  String key = "1",
-}) {
-  return Container(
-    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 30.0),
-    child: TextButton(
-      key: Key(key),
-      onPressed: () {
-        function;
-      },
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.focused) && function != null) {
-            return Colors.green;
-          }
-          if (states.contains(MaterialState.pressed) && function != null) {
-            return color.withOpacity(0.5);
-          }
-          if (states.contains(MaterialState.hovered) && function != null) {
-            return color.withOpacity(0.75);
-          }
-          return color;
-        }),
-        //backgroundColor: MaterialStateProperty.all(color),
-        elevation: MaterialStateProperty.all(3.0),
-        padding: MaterialStateProperty.all(const EdgeInsets.all(10.0)),
-        fixedSize: MaterialStateProperty.all(const Size(350, 50)),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            side: const BorderSide(
-              color: Colors.purple,
-            ),
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-        ),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: fontColor,
-          fontSize: fontSize,
-        ),
-      ),
-    ),
-  );
-}
-
-// void fillQNA() {
-//   //Fills questions and answers maps with values
-//   questions_["What is the color of the sun"] = "2";
-//   //White
-//   answers_[0]?.add("Yellow");
-//   answers_[0]?.add("White");
-//   answers_[0]?.add("Orange");
-//   answers_[0]?.add("Blue");
-
-//   questions_["How many feet are in a mile"] = "3";
-//   //5280
-//   answers_[1]?.add("4280");
-//   answers_[1]?.add("5200");
-//   answers_[1]?.add("5280");
-//   answers_[1]?.add("6280");
-
-//   questions_["How many continents are there"] = "1";
-//   //7
-//   answers_[2]?.add("7");
-//   answers_[2]?.add("6");
-//   answers_[2]?.add("8");
-//   answers_[2]?.add("5");
-
-//   questions_["What is the name of the current US president"] = "4";
-//   //Joe Biden
-//   answers_[3]?.add("Barack Obama");
-//   answers_[3]?.add("Hunter Biden");
-//   answers_[3]?.add("Donald Trump");
-//   answers_[3]?.add("Joe Biden");
-//   print(answers_[0]);
-// }
