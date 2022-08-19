@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 //import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/main.dart';
 //import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -47,7 +48,15 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   const Spacer(), //Takes 1/6 space
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage(
+                                  title: 'quiz app',
+                                )),
+                      );
+                    },
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
