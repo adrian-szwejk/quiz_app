@@ -7,8 +7,23 @@ import 'package:quiz_app/build_functions.dart';
 import 'package:quiz_app/data.dart';
 import 'package:quiz_app/quiz_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  final TextEditingController myController = TextEditingController();
+
+  //Ovveriding dispose function from TextEditingController
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +52,10 @@ class WelcomeScreen extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.normal),
                   ),
                   const Spacer(), //Takes 1/6 space
-                  const TextField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: myController,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
                       hintStyle: TextStyle(fontSize: 15.0, color: Colors.white),
                       hintText: 'Full name',
                       filled: true,
@@ -51,10 +67,21 @@ class WelcomeScreen extends StatelessWidget {
                   const Spacer(), //Takes 1/6 space
                   InkWell(
                     onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            // Retrieve the text that the user has entered by using the
+                            // TextEditingController.
+                            content: Text(myController.text),
+                          );
+                        },
+                      );
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const QuizScreen(),
+                          builder: (context) =>
+                              QuizScreen(name: myController.text),
                         ),
                       );
                     },
