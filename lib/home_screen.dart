@@ -12,15 +12,15 @@ import 'package:quiz_app/build_functions.dart';
 // import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:flutter/foundation.dart';
 
-class QuizScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final String name;
-  const QuizScreen({Key? key, required this.name}) : super(key: key);
+  const HomeScreen({Key? key, required this.name}) : super(key: key);
 
   @override
-  State<QuizScreen> createState() => _QuizScreenState();
+  State<HomeScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<HomeScreen> {
   //Variables
   int _counter = 0;
   int _index = 0;
@@ -64,7 +64,8 @@ class _QuizScreenState extends State<QuizScreen> {
               body: Stack(
                 children: [
                   buildHomeBg(),
-                  Text('Hello ${widget.name}'),
+                  moveVariables(name: widget.name),
+                  //Text('Hello ${widget.name}'),
                 ],
               ),
             ),

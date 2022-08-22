@@ -188,3 +188,21 @@ Container buildButton({
     ),
   );
 }
+
+//Background for home screen
+
+//Needs class to pass variables from welcome screen
+class moveVariables extends StatefulWidget {
+  final String name;
+  const moveVariables({Key? key, required this.name}) : super(key: key);
+
+  @override
+  State<moveVariables> createState() => _moveVariablesState();
+}
+
+class _moveVariablesState extends State<moveVariables> {
+  @override
+  Widget build(BuildContext context) {
+    return Text('hello ${widget.name}');
+  }
+}
