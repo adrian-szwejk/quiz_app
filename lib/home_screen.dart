@@ -3,6 +3,7 @@ import 'package:quiz_app/data.dart';
 import 'package:quiz_app/build_functions.dart';
 import 'package:quiz_app/welcome_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:quiz_app/CustomShape.dart';
 
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiz_app/data.dart';
@@ -70,75 +71,103 @@ class _QuizScreenState extends State<HomeScreen> {
           ),
           //Learn
           Center(
-            child: Column(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 0.0),
-                    child: Expanded(
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          TextButton(
-                              onPressed: () {}, child: const Text('hello'))
+            child: Scaffold(
+              appBar: AppBar(
+                toolbarHeight: 79,
+                backgroundColor: Colors.transparent,
+                elevation: 0.0,
+                flexibleSpace: ClipPath(
+                  clipper: Customshape(),
+                  child: Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.red,
+                    child: Center(
+                        child: Text(
+                      "Subscribe to Proto Coders Point",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    )),
+                  ),
+                ),
+              ),
+              body: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 0.0),
+                      child: Expanded(
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            TextButton(
+                                onPressed: () {}, child: const Text('hello'))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                15.0, 10.0, 15.0, 10.0),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "${questions_.keys.elementAt(_index)}?",
+                              style: const TextStyle(
+                                fontSize: 30.0,
+                              ),
+                            ),
+                          ),
+                          buildButton(
+                            text:
+                                answers_.values.elementAt(_index).elementAt(0),
+                            color: const Color.fromARGB(255, 222, 219, 219),
+                            fontColor: Colors.black,
+                            fontSize: 20.0,
+                            function:
+                                _checkAnswer(0) ? _incrementCounter : () {},
+                            key: "0",
+                          ),
+                          buildButton(
+                            text:
+                                answers_.values.elementAt(_index).elementAt(1),
+                            color: const Color.fromARGB(255, 222, 219, 219),
+                            fontColor: Colors.black,
+                            fontSize: 20.0,
+                            function:
+                                _checkAnswer(1) ? _incrementCounter : () {},
+                            key: "1",
+                          ),
+                          buildButton(
+                            text:
+                                answers_.values.elementAt(_index).elementAt(2),
+                            color: const Color.fromARGB(255, 222, 219, 219),
+                            fontColor: Colors.black,
+                            fontSize: 20.0,
+                            function:
+                                _checkAnswer(2) ? _incrementCounter : () {},
+                            key: "2",
+                          ),
+                          buildButton(
+                            text:
+                                answers_.values.elementAt(_index).elementAt(3),
+                            color: const Color.fromARGB(255, 222, 219, 219),
+                            fontColor: Colors.black,
+                            fontSize: 20.0,
+                            function:
+                                _checkAnswer(3) ? _incrementCounter : () {},
+                            key: "3",
+                          ),
                         ],
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(15.0, 50.0, 15.0, 10.0),
-                          child: Text(
-                            textAlign: TextAlign.center,
-                            "${questions_.keys.elementAt(_index)}?",
-                            style: const TextStyle(
-                              fontSize: 30.0,
-                            ),
-                          ),
-                        ),
-                        buildButton(
-                          text: answers_.values.elementAt(_index).elementAt(0),
-                          color: const Color.fromARGB(255, 222, 219, 219),
-                          fontColor: Colors.black,
-                          fontSize: 20.0,
-                          function: _checkAnswer(0) ? _incrementCounter : () {},
-                          key: "0",
-                        ),
-                        buildButton(
-                          text: answers_.values.elementAt(_index).elementAt(1),
-                          color: const Color.fromARGB(255, 222, 219, 219),
-                          fontColor: Colors.black,
-                          fontSize: 20.0,
-                          function: _checkAnswer(1) ? _incrementCounter : () {},
-                          key: "1",
-                        ),
-                        buildButton(
-                          text: answers_.values.elementAt(_index).elementAt(2),
-                          color: const Color.fromARGB(255, 222, 219, 219),
-                          fontColor: Colors.black,
-                          fontSize: 20.0,
-                          function: _checkAnswer(2) ? _incrementCounter : () {},
-                          key: "2",
-                        ),
-                        buildButton(
-                          text: answers_.values.elementAt(_index).elementAt(3),
-                          color: const Color.fromARGB(255, 222, 219, 219),
-                          fontColor: Colors.black,
-                          fontSize: 20.0,
-                          function: _checkAnswer(3) ? _incrementCounter : () {},
-                          key: "3",
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           //Profile screen
