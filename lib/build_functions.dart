@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quiz_app/data.dart';
-
-//Background for home screen
-Widget buildHomeBg() => Container(
-      color: Colors.grey,
-      // child: SvgPicture.asset(
-      //   'assets/icons/bg.svg',
-      //   width: double.infinity,
-      //   height: double.infinity,
-      //   fit: BoxFit.cover,
-      // ),
-    );
+import 'package:highlight_text/highlight_text.dart';
+import 'package:intl/intl.dart';
 
 //Cover image widget for profile screen
 Widget buildCoverImage() => Container(
@@ -189,6 +180,11 @@ Container buildButton({
   );
 }
 
+//Background color for home screen
+Widget buildHomeBg() => Container(
+      color: Colors.blue[700],
+    );
+
 //Background for home screen
 
 //Needs class to pass variables from welcome screen
@@ -203,6 +199,66 @@ class moveVariables extends StatefulWidget {
 class _moveVariablesState extends State<moveVariables> {
   @override
   Widget build(BuildContext context) {
-    return Text('hello ${widget.name}');
+    final currentWidth = MediaQuery.of(context).size.width;
+    DateTime now = new DateTime.now();
+    String formatDate = DateFormat('MMMM dd, yyyy').format(now);
+
+    return Column(
+      children: [
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'Hi, ',
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '${widget.name}',
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 202, 9, 236),
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                const Text(
+                  '!',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                formatDate,
+                style: TextStyle(
+                  color: Colors.blue[200],
+                ),
+              ),
+            ],
+          ),
+        ),
+        TextButton(
+          onPressed: () {},
+          style: ButtonStyle(
+              backgroundColor: currentWidth < 600
+                  ? MaterialStateProperty.all(Colors.redAccent)
+                  : MaterialStateProperty.all(Colors.greenAccent)),
+          child: Text('Width: $currentWidth'),
+        ),
+      ],
+    );
   }
 }

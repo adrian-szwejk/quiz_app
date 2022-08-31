@@ -55,12 +55,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   TextField(
                     controller: myController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      hintStyle: TextStyle(fontSize: 15.0, color: Colors.white),
+                    decoration: InputDecoration(
+                      hintStyle:
+                          const TextStyle(fontSize: 15.0, color: Colors.white),
                       hintText: 'Full name',
                       filled: true,
-                      fillColor: Colors.grey,
-                      border: OutlineInputBorder(
+                      fillColor: Colors.blue[500],
+                      border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                     ),
                   ),
