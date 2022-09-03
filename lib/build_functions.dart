@@ -207,10 +207,11 @@ class _moveVariablesState extends State<moveVariables> {
       children: [
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+            padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                //Hello ${name}
                 const Text(
                   'Hi, ',
                   style: TextStyle(
@@ -232,12 +233,26 @@ class _moveVariablesState extends State<moveVariables> {
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold),
                 ),
+                const SizedBox(
+                  width: 185,
+                ),
+                //Wrapped circle avatar to give it a border
+                CircleAvatar(
+                  radius: 26,
+                  backgroundColor: Colors.grey[800],
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.grey[800],
+                    backgroundImage: const NetworkImage(
+                        'https://www.lightsong.net/wp-content/uploads/2020/12/blank-profile-circle.png'),
+                  ),
+                ),
               ],
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 30.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -249,6 +264,9 @@ class _moveVariablesState extends State<moveVariables> {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 20,
         ),
         TextButton(
           onPressed: () {},

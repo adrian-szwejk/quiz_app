@@ -118,7 +118,7 @@ class _QuizScreenState extends State<HomeScreen> {
                               textAlign: TextAlign.center,
                               "${questions_.keys.elementAt(_index)}?",
                               style: const TextStyle(
-                                fontSize: 30.0,
+                                fontSize: 25.0,
                               ),
                             ),
                           ),
