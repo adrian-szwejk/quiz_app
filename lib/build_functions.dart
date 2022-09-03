@@ -265,6 +265,37 @@ class _moveVariablesState extends State<moveVariables> {
             ],
           ),
         ),
+        buildButton(
+          text: 'Recent Quiz',
+          color: Color.fromARGB(255, 241, 169, 220),
+          fontColor: Colors.black,
+          fontSize: 20.0,
+          function: () {},
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[500],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                Text(
+                  'search',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(
           height: 20,
         ),

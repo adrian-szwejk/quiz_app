@@ -188,14 +188,16 @@ class _QuizScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         currentIndex: _navIdx,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Learn',
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.face),
