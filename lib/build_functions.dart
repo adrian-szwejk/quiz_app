@@ -209,43 +209,48 @@ class _moveVariablesState extends State<moveVariables> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //Hello ${name}
-                const Text(
-                  'Hi, ',
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  '${widget.name}',
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 202, 9, 236),
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  '!',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 185,
+                Row(
+                  children: [
+                    const Text(
+                      'Hi, ',
+                      style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${widget.name}',
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 202, 9, 236),
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Text(
+                      '!',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
                 //Wrapped circle avatar to give it a border
-                CircleAvatar(
-                  radius: 26,
-                  backgroundColor: Colors.grey[800],
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.grey[800],
-                    backgroundImage: const NetworkImage(
-                        'https://www.lightsong.net/wp-content/uploads/2020/12/blank-profile-circle.png'),
-                  ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 26,
+                      backgroundColor: Colors.grey[800],
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Colors.grey[800],
+                        backgroundImage: const NetworkImage(
+                            'https://www.lightsong.net/wp-content/uploads/2020/12/blank-profile-circle.png'),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
