@@ -240,14 +240,19 @@ class _moveVariablesState extends State<moveVariables> {
                 //Wrapped circle avatar to give it a border
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 26,
-                      backgroundColor: Colors.grey[800],
-                      child: CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.grey[800],
-                        backgroundImage: const NetworkImage(
-                            'https://www.lightsong.net/wp-content/uploads/2020/12/blank-profile-circle.png'),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue[500],
+                        borderRadius: BorderRadius.circular(12.0),
+                        gradient: kNotificationGradient,
+                        border: Border.all(
+                          color: Color.fromARGB(136, 255, 255, 255),
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(16),
+                      child: const Icon(
+                        Icons.notifications,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -270,21 +275,14 @@ class _moveVariablesState extends State<moveVariables> {
             ],
           ),
         ),
-        buildButton(
-          text: 'Recent Quiz',
-          color: Color.fromARGB(255, 241, 169, 220),
-          fontColor: Colors.black,
-          fontSize: 20.0,
-          function: () {},
-        ),
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(10.0),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.blue[500],
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+            padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
             child: Row(
               children: const [
                 Icon(
@@ -301,6 +299,13 @@ class _moveVariablesState extends State<moveVariables> {
             ),
           ),
         ),
+        buildButton(
+          text: 'Recent Quiz',
+          color: Color.fromARGB(255, 241, 169, 220),
+          fontColor: Colors.black,
+          fontSize: 20.0,
+          function: () {},
+        ),
         const SizedBox(
           height: 20,
         ),
@@ -316,3 +321,22 @@ class _moveVariablesState extends State<moveVariables> {
     );
   }
 }
+
+
+
+
+
+
+/*
+Sample Circle avatar for later
+CircleAvatar(
+  radius: 26,
+  backgroundColor: Colors.grey[800],
+  child: CircleAvatar(
+    radius: 25,
+    backgroundColor: Colors.grey[800],
+    backgroundImage: const NetworkImage(
+        'https://www.lightsong.net/wp-content/uploads/2020/12/blank-profile-circle.png'),
+  ),
+),
+*/

@@ -101,7 +101,9 @@ class _QuizScreenState extends State<HomeScreen> {
                           shrinkWrap: true,
                           children: [
                             TextButton(
-                                onPressed: () {}, child: const Text('hello'))
+                              onPressed: () {},
+                              child: const Text('hello'),
+                            )
                           ],
                         ),
                       ),
