@@ -1,4 +1,4 @@
-# Multi-Subject Quizz App
+# Multi-Subject Quiz App
 
 -This project was for me to test the new skills that I have aquired throughout my research/learning of the flutter framework.
 
