@@ -43,6 +43,7 @@ dependencies:
   websafe_svg: ^2.1.2
   highlight_text: ^1.4.1
   intl: ^0.17.0
+  cached_network_image: ^3.2.2
 
 
 

@@ -3,6 +3,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quiz_app/data.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+//List Future waits to allow app to wait until data is loaded
+Future<List<String>> futureWait() async {
+  return Future.wait([
+    Future.delayed(const Duration(seconds: 1), () => "First Future Done"),
+    Future.delayed(const Duration(seconds: 2), () => "Second Future Done"),
+    Future.delayed(const Duration(seconds: 3), () => "Third Future Done"),
+  ]);
+}
 
 //Cover image widget for profile screen
 Widget buildCoverImage() => Container(
@@ -16,12 +26,31 @@ Widget buildCoverImage() => Container(
     );
 
 //Profile image function for profile screen
-Widget buildProfileImage() => CircleAvatar(
+Widget buildProfileImages() => CircleAvatar(
       radius: profileHeight / 2,
       backgroundColor: Colors.grey[800],
-      backgroundImage: const NetworkImage(
-          'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg'),
+      backgroundImage: NetworkImage(
+        'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg',
+      ),
     );
+
+Widget buildProfileImage() {
+  return FutureBuilder<List<String>>(
+    future: futureWait(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return CircleAvatar(
+          radius: profileHeight / 2,
+          backgroundColor: Colors.grey[800],
+          backgroundImage: NetworkImage(
+            'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg',
+          ),
+        );
+      }
+      return const Center(child: CircularProgressIndicator());
+    },
+  );
+}
 
 //Extracted stack that builds cover image / pfp
 Widget buildTop() {
