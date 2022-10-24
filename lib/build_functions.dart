@@ -9,32 +9,36 @@ import 'package:cached_network_image/cached_network_image.dart';
 Future<List<String>> futureWait() async {
   return Future.wait([
     Future.delayed(const Duration(seconds: 1), () => "First Future Done"),
-    Future.delayed(const Duration(seconds: 2), () => "Second Future Done"),
-    Future.delayed(const Duration(seconds: 3), () => "Third Future Done"),
+    Future.delayed(const Duration(seconds: 1), () => "Second Future Done"),
+    Future.delayed(const Duration(seconds: 1), () => "Third Future Done"),
   ]);
 }
 
 //Cover image widget for profile screen
-Widget buildCoverImage() => Container(
-      color: Colors.grey,
-      child: Image.network(
-        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-        width: double.infinity,
-        height: coverHeight,
-        fit: BoxFit.cover,
-      ),
-    );
+
+Widget buildCoverImage() {
+  return FutureBuilder<List<String>>(
+    future: futureWait(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return Container(
+          color: Colors.grey,
+          child: Image.network(
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+            width: double.infinity,
+            height: coverHeight,
+            fit: BoxFit.cover,
+          ),
+        );
+      }
+      return const Center(child: CircularProgressIndicator());
+    },
+  );
+}
 
 //Profile image function for profile screen
-Widget buildProfileImages() => CircleAvatar(
-      radius: profileHeight / 2,
-      backgroundColor: Colors.grey[800],
-      backgroundImage: NetworkImage(
-        'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg',
-      ),
-    );
-
 Widget buildProfileImage() {
+  //Future builder to allow app to load cache for network image
   return FutureBuilder<List<String>>(
     future: futureWait(),
     builder: (context, snapshot) {
@@ -42,8 +46,8 @@ Widget buildProfileImage() {
         return CircleAvatar(
           radius: profileHeight / 2,
           backgroundColor: Colors.grey[800],
-          backgroundImage: NetworkImage(
-            'https://media-exp1.licdn.com/dms/image/C4E03AQGEoYWpWqKATA/profile-displayphoto-shrink_200_200/0/1644514130668?e=1665619200&v=beta&t=5QfuT-w5IFTPoopH6_5_r8tfZGLfJTvfef8DznZKYrg',
+          backgroundImage: CachedNetworkImageProvider(
+            "https://imgs.search.brave.com/e_GufQnkPIjXQxEqj5IFmGe4GRL6uTyXriKBkdX40wg/rs:fit:640:474:1/g:ce/aHR0cHM6Ly9pbWcu/aXppc21pbGUuY29t/L2ltZy9pbWcyLzIw/MDkwODExL3VnbHlf/cGVvcGxlXzIzLmpw/Zw",
           ),
         );
       }
